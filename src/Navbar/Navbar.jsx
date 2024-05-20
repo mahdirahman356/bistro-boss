@@ -49,10 +49,13 @@ const Navbar = () => {
               <Link to="/menu">Our Menu</Link>
               <Link to="/shop">Our Shop</Link>
               <Link to="/secrete">Secrete</Link>
+              <Link to="/dashbord">Dashbord</Link>
+                <Link to="dashbord/cart">
                 <button className="flex">
                 <MdOutlineShoppingCart className="text-[25px]" />
                   <div className="badge badge-secondary">+{cart.length}</div>
                 </button>
+                </Link>
               <Link to="/login" className={user ? "hidden" : ""}>Login</Link>
               <button className={!user ? "hidden" : ""} onClick={handleLogOut}>Log Out</button>
             </ul>

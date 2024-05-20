@@ -9,7 +9,9 @@ import Login from "../Components/Login";
 import SignUp from "../Components/SignUp";
 import Secrete from "../Secrete/Secrete";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
-
+import Dashbord from "../Dashbord/Dashbord";
+import Cart from "../Dashbord/Cart";
+import UserHome from "../Dashbord/UserHome";
    export const router = createBrowserRouter([
     {
       path: "/",
@@ -41,4 +43,18 @@ import PrivetRoute from "../PrivetRoute/PrivetRoute";
         }
       ]
     },
+    {
+      path: '/dashbord',
+      element:<Dashbord></Dashbord>,
+      children: [
+        {
+          path:'/dashbord',
+          element:<UserHome></UserHome>
+        },
+        {
+          path:"/dashbord/cart",  
+          element: <Cart></Cart>
+        }
+      ]
+    }
   ]);
