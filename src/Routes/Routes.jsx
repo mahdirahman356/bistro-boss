@@ -7,6 +7,8 @@ import Menu from "../Components/Menu";
 import OurShop from "../Components/OurShop";
 import Login from "../Components/Login";
 import SignUp from "../Components/SignUp";
+import Secrete from "../Secrete/Secrete";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
    export const router = createBrowserRouter([
     {
@@ -33,6 +35,10 @@ import SignUp from "../Components/SignUp";
           path:"/signup",
           element:<SignUp></SignUp>
         },
+        {
+          path: "/secrete",
+          element:<PrivetRoute><Secrete></Secrete></PrivetRoute>
+        }
       ]
     },
   ]);

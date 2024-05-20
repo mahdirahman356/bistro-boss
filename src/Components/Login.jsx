@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../assets/reservation/wood-grain-pattern-gray1x.png"
 import authentication from "../assets/others/authentication2.png"
 import { FcGoogle } from "react-icons/fc";
@@ -11,25 +11,27 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 
 const Login = () => {
     let { loginUser } = useContext(AuthContext)
-
     let [disabled, setDisable] = useState(true)
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
-    
+
     useEffect(() => {
-        loadCaptchaEnginge(6); 
-    },[])
+        loadCaptchaEnginge(6);
+    }, [])
 
     let handleCaptcha = (e) => {
-        let  user_captcha_value = e.target.value
-        if (validateCaptcha(user_captcha_value) ){
+        let user_captcha_value = e.target.value
+        if (validateCaptcha(user_captcha_value)) {
             setDisable(false)
         }
-        else{
+        else {
             setDisable(true)
         }
     }
@@ -45,6 +47,8 @@ const Login = () => {
                     icon: 'success',
                     confirmButtonText: 'Cool'
                 })
+                navigate(from, { replace: true });
+
             })
             .catch(error => {
                 console.log(error.message);
@@ -57,7 +61,7 @@ const Login = () => {
             });
 
     }
-    
+
 
 
     return (
@@ -98,7 +102,7 @@ const Login = () => {
                     <div className="md:flex gap-4">
                         <div className="md:w-full">
                             <p className="font-semibold my-2 mt-5">
-                            <LoadCanvasTemplate />
+                                <LoadCanvasTemplate />
 
                             </p>
                             <input

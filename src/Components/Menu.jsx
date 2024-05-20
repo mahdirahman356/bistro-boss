@@ -26,7 +26,7 @@ const Menu = () => {
                     header="TODAY'S OFFER"
                     subHeader="---Don't miss---"
                 ></SectionTitle>
-                <OrderMenu item={offered}></OrderMenu>
+                <OrderMenu item={offered} itemName="offered"></OrderMenu>
             </section>
 
             {/* PIZZA SECTION */}
@@ -35,7 +35,7 @@ const Menu = () => {
                     header="PIZZA"
                     description="Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 ></ItemsSectionTitle>
-                <OrderMenu item={pizza}></OrderMenu>
+                <OrderMenu item={pizza} itemName="pizza"></OrderMenu>
             </section>
 
             {/* SALADS SECTION */}
@@ -44,7 +44,7 @@ const Menu = () => {
                     header="SALADS"
                     description="Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 ></ItemsSectionTitle>
-                <OrderMenu item={salad}></OrderMenu>
+                <OrderMenu item={salad} itemName="salad"></OrderMenu>
             </section>
 
             {/* SOUPS SECTION */}
@@ -53,7 +53,7 @@ const Menu = () => {
                     header="SOUPS"
                     description="Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 ></ItemsSectionTitle>
-                <OrderMenu item={soup}></OrderMenu>
+                <OrderMenu item={soup} itemName="soup"></OrderMenu>
             </section>
 
             {/* DESSERTS SECTION */}
@@ -62,7 +62,7 @@ const Menu = () => {
                     header="DESSERTS"
                     description="Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 ></ItemsSectionTitle>
-                <OrderMenu item={dessert}></OrderMenu>
+                <OrderMenu item={dessert} itemName="dessert"></OrderMenu>
             </section>
 
 

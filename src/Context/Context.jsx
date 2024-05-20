@@ -10,6 +10,8 @@ const Context = ({ children }) => {
 
     let [user, setUser] = useState(null)
     let [loading, setLoading] = useState(true)
+    let [menuList, SetMenuList] = useState("")
+
 
     let createAccount = (email, password) => {
         setLoading(true)
@@ -54,7 +56,9 @@ const Context = ({ children }) => {
         user,
         userLogOut,
         googleLogIn,
-        loading
+        loading,
+        menuList, 
+        SetMenuList
     }
     return (
         <AuthContext.Provider value={authInfo}>
