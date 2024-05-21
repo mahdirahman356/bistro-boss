@@ -10,8 +10,9 @@ import Swal from "sweetalert2";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 
 const Login = () => {
-    let { loginUser } = useContext(AuthContext)
+    let { loginUser, googleLogIn} = useContext(AuthContext)
     let [disabled, setDisable] = useState(true)
+    let [loading, setLoading] = useState(false);
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -38,6 +39,7 @@ const Login = () => {
 
     const onSubmit = (data) => {
         console.log(data)
+        setLoading(true);
         loginUser(data.email, data.password)
             .then(result => {
                 console.log(result.user)
@@ -58,8 +60,30 @@ const Login = () => {
                     icon: 'error',
                     confirmButtonText: 'close'
                 })
-            });
+                setLoading(false);
+            })
 
+            // .finally(() => {
+            // });
+    }
+
+    let  handleGoogleLogIn = () => {
+        googleLogIn()
+        .then((result) => {
+            console.log(result.user)
+            Swal.fire({
+                title: 'Success',
+                text: 'User Added Successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+              })
+              navigate(from, { replace: true });
+
+
+        })
+        .catch((error) => {
+            console.log(error)
+        });
     }
 
 
@@ -116,12 +140,19 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <input disabled={disabled} className="btn text-white bg-[#D1A054] w-full my-6" type="submit" value="Login Youn Account" />
+                    <button
+                        disabled={disabled} 
+                        className="btn text-white bg-[#D1A054] w-full my-6"
+                        type="submit">
+                        {loading ?
+                            <span className="loading loading-spinner text-white"></span>
+                            : "Continue"}
+                    </button>
                     <p className="text-center text-[#D1A054]">Dont have an account? <Link to="/signup"><span className="text-[#135D66] underline">Create an account</span></Link> </p>
                     <div className="mt-6">
                         <p className="text-center mb-5 text-sm">or sign in with</p>
                         <div className="flex flex-col md:flex-row  justify-center gap-7 items-center">
-                            <p className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FcGoogle className="text-[25px]" /></p>
+                            <p onClick={handleGoogleLogIn} className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FcGoogle className="text-[25px]" /></p>
                             <p className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FaGithub className="text-[25px]" /></p>
                         </div>
                     </div>

@@ -18,9 +18,20 @@ const Context = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    let userUpdate = (displayName, photoURL) => {
-        setLoading(true)
-        return updateProfile(auth.currentUser,{ displayName: displayName, photoURL: photoURL })
+    let userUpdate = async(displayName, photoURL) => {
+        setLoading(true);
+    try {
+        await updateProfile(auth.currentUser, { displayName, photoURL });
+        setUser({
+            ...auth.currentUser,
+            displayName: displayName,
+            photoURL: photoURL
+        });
+    } catch (error) {
+        console.error("Error updating user profile:", error);
+    } finally {
+        setLoading(false);
+    }
     }
 
     let loginUser = (email, password) => {

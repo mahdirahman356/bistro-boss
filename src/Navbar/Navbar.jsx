@@ -62,17 +62,8 @@ const Navbar = () => {
           </div>
           {
             user && <div className="w-10 h-10 ml-4">
-              <div className="dropdown dropdown-hover dropdown-end">
-                <div tabIndex={0} role="button" className="w-10 h-10"><img className="rounded-full" src={user.photoURL ? user.photoURL : userImg} alt="" /></div>
-                <ul tabIndex={0} className={!user.displayName ? `hidden` : `dropdown-content z-[10] menu p-2 shadow  rounded-box w-52 bg-black`}>
-                  <img className="rounded-full w-16 h-16 mx-auto" src={user.photoURL ? user.photoURL : userImg} alt="" />
-                  <li className="text-center p-2 text-[18px] font-semibold">{user.displayName}</li>
-                  <div className="flex justify-center items-center mb-3">
-                    <button className="uppercase btn btn-outline bg-[#d4d3d3] text-[#BB8506] border-x-0 border-t-0 border-[#BB8506] border-b-2 rounded-lg">View Profile</button>
-                  </div>
-                </ul>
+              <img className="rounded-full" src={user.photoURL ? user.photoURL : userImg} alt="" />
               </div>
-            </div>
           }
         </div>
       </div>

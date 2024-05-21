@@ -2,7 +2,7 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import { HiOutlineHome, HiOutlineMenuAlt1 } from "react-icons/hi";
 import { LuCalendarDays, LuMailMinus } from "react-icons/lu";
 import { MdOutlinePayments, MdOutlineReviews, MdOutlineShoppingBag, MdOutlineShoppingCart } from "react-icons/md";
-import { TbCalendarUser } from "react-icons/tb";
+import { TbCalendarUser, TbUser} from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashbord = () => {
@@ -20,7 +20,7 @@ const Dashbord = () => {
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                        <ul className="menu p-7 w-60 h-screen bg-[#D1A054] text-base-content gap-4">
+                        <ul className="menu p-7 w-70 md:w-60 h-screen bg-[#D1A054] text-base-content gap-4">
                             {/* Sidebar content here */}
                             <NavLink to='/dashbord' className="flex items-center gap-2"><HiOutlineHome className="text-[23px]"/>User Home</NavLink>
                             <NavLink className="flex items-center gap-2"><LuCalendarDays  className="text-xl"/>Reservation</NavLink>
@@ -33,6 +33,7 @@ const Dashbord = () => {
                             <NavLink to='/menu' className="flex items-center gap-2"><HiOutlineMenuAlt1 className="text-[23px]"/>Menu</NavLink>
                             <NavLink to='/shop' className="flex items-center gap-2"><MdOutlineShoppingBag className="text-[23px]"/>Shop</NavLink>
                             <NavLink className="flex items-center gap-2"><LuMailMinus className="text-xl"/>Contact</NavLink>
+                            <NavLink to='/dashbord/user-profilr' className="flex items-center gap-2"><TbUser className="text-[25px]"/>Profile</NavLink>
                         </ul>
 
                     </div>

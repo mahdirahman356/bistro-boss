@@ -1,18 +1,21 @@
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../assets/reservation/wood-grain-pattern-gray1x.png"
 import authentication from "../assets/others/authentication2.png"
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Context/Context";
 import Swal from "sweetalert2";
 
 
 const SignUp = () => {
 
-    let {createAccount, userUpdate} = useContext(AuthContext)
-
+    let { createAccount, userUpdate } = useContext(AuthContext)
+    let [loading, setLoading] = useState(false);
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const {
         register,
         handleSubmit,
@@ -20,32 +23,35 @@ const SignUp = () => {
     } = useForm()
     const onSubmit = (data) => {
         console.log(data)
+        setLoading(true)
         createAccount(data.email, data.password)
-        .then(result => {
-            console.log(result.user);
-            Swal.fire({
-                title: 'Success',
-                text: 'User Created Successfully',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            })
-            userUpdate(data.name)
-                .then(() => {
-                    console.log("user updated");
+            .then(result => {
+                console.log(result.user);
+                Swal.fire({
+                    title: 'Success',
+                    text: 'User Created Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
                 })
-                .catch(error => {
-                    console.log(error.message);
-                });
-        })
-        .catch(error => {
-            console.log(error.message);
-            Swal.fire({
-                title: 'Error',
-                text: 'Email already in use',
-                icon: 'error',
-                confirmButtonText: 'close'
+                userUpdate(data.name)
+                    .then(() => {
+                        console.log("user updated");
+                    })
+                    .catch(error => {
+                        console.log(error.message);
+                    });
+                navigate(from, { replace: true });
             })
-        });
+            .catch(error => {
+                console.log(error.message);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Email already in use',
+                    icon: 'error',
+                    confirmButtonText: 'close'
+                })
+                setLoading(false)
+            });
     }
 
     return (
@@ -88,7 +94,7 @@ const SignUp = () => {
                                 placeholder="Enter Your Password"
                                 name="password"
                                 className="input  w-full"
-                                {...register("password", { required: true,  minLength: 6 })}
+                                {...register("password", { required: true, minLength: 6 })}
                             />
                             {errors.password?.type === "required" && (
                                 <span className="text-sm text-red-500">This field is required</span>
@@ -100,7 +106,14 @@ const SignUp = () => {
                         </div>
                     </div>
 
-                    <input className="btn text-white bg-[#D1A054] w-full my-6" type="submit" value="Login Youn Account" />
+                    <button
+                        className="btn text-white bg-[#D1A054] w-full my-6"
+                        type="submit">
+                        {loading ?
+                            <span className="loading loading-spinner text-white"></span>
+                            : "Continue"}
+                    </button>
+
                     <p className="text-center text-[#D1A054]">Already registered? <Link to="/login"><span className="text-[#135D66] underline">Go to log in</span></Link> </p>
                     <div className="mt-6">
                         <p className="text-center mb-5 text-sm">or sign in with</p>
