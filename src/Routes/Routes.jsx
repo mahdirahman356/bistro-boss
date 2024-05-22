@@ -13,6 +13,8 @@ import Dashbord from "../Dashbord/Dashbord";
 import Cart from "../Dashbord/Cart";
 import UserHome from "../Dashbord/UserHome";
 import UserProfile from "../Dashbord/UserProfile";
+import AllUsers from "../Dashbord/AllUsers";
+import AdminHome from "../Dashbord/AdminHome";
    export const router = createBrowserRouter([
     {
       path: "/",
@@ -46,19 +48,27 @@ import UserProfile from "../Dashbord/UserProfile";
     },
     {
       path: '/dashbord',
-      element:<PrivetRoute><Dashbord></Dashbord></PrivetRoute>,
+      element:<Dashbord></Dashbord>, 
       children: [
         {
-          path:'/dashbord',
-          element:<PrivetRoute><UserHome></UserHome></PrivetRoute>
+          path:'userHome',
+          element:<UserHome></UserHome>
         },
         {
-          path:"/dashbord/cart",  
+          path:"cart",  
           element: <Cart></Cart>
         },
         {
-          path:"/dashbord/user-profilr",
+          path:"user-profilr",
           element:<PrivetRoute><UserProfile></UserProfile></PrivetRoute>
+        },
+        {
+          path:"admin-home",  
+          element:<PrivetRoute><AdminHome></AdminHome></PrivetRoute>
+        },
+        {
+          path:"all-users",  
+          element:<PrivetRoute><AllUsers></AllUsers></PrivetRoute>
         }
       ]
     }

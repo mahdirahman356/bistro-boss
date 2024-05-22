@@ -52,23 +52,17 @@ const UserProfile = () => {
                                     defaultValue={user.displayName}
                                     className="block w-full py-3 text-gray-700 bg-white rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 border-gray-200 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                     placeholder="Username"
-                                    required />
+                                    required/>
                             </div>
                             {/* Profile Photo */}
                             <p className="mt-3 text-gray-500 mb-1 text-sm ml-2">Profile Photo</p>
                             <label htmlFor="image" className="flex items-center justify-center px-3 py-3 mx-auto text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
-                                {/* <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                                </svg> */}
-
-                                {/* <h2 className="mx-3 text-gray-400">Profile Photo</h2> */}
-
                                 <input
                                     type="file"
                                     name="image"
                                     className="rounded-lg bg-[#D1A054] text-white opacity-70"
                                     accept="image/*"
-                                    required />
+                                    required/>
                             </label>
                             <input className="btn bg-[#D1A054] w-full text-white mt-4" type="submit" value="Save" />
                         </form>

@@ -2,12 +2,12 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import useCart from "../Hooks/useCart";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
-import useAxiosCommon from "../Hooks/useAxiosCommon";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Cart = () => {
     let [cart, refetch] = useCart()
     let totalPrice = cart.reduce((total, item) => total + item.price, 0)
-    let axiosCommon = useAxiosCommon()
+    let axiosSecure = useAxiosSecure()
     let handleDelete = (id) => {
        console.log(id)
        Swal.fire({
@@ -20,7 +20,7 @@ const Cart = () => {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-        axiosCommon.delete(`/carts/${id}`)
+        axiosSecure.delete(`/carts/${id}`)
         .then(res => {
             console.log(res.data)
             if(res.data.deletedCount > 0){

@@ -1,5 +1,3 @@
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../assets/reservation/wood-grain-pattern-gray1x.png"
 import authentication from "../assets/others/authentication2.png"
@@ -7,10 +5,12 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Context/Context";
 import Swal from "sweetalert2";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
+import GoogleLogin from "../SocialLogin/GoogleLogin";
 
 
 const SignUp = () => {
-
+    let axiosCommon = useAxiosCommon()
     let { createAccount, userUpdate } = useContext(AuthContext)
     let [loading, setLoading] = useState(false);
     let navigate = useNavigate();
@@ -27,15 +27,24 @@ const SignUp = () => {
         createAccount(data.email, data.password)
             .then(result => {
                 console.log(result.user);
-                Swal.fire({
-                    title: 'Success',
-                    text: 'User Created Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                })
                 userUpdate(data.name)
                     .then(() => {
-                        console.log("user updated");
+                        let userInfo = {
+                            name : data.name,
+                            email: data.email
+                        }
+                        axiosCommon.post('/users', userInfo)
+                        .then(res => {
+                            console.log(res.data)
+                            if(res.data.acknowledged === true){
+                                Swal.fire({
+                                    title: 'Success',
+                                    text: 'User Created Successfully',
+                                    icon: 'success',
+                                    confirmButtonText: 'Cool'
+                                })
+                            }
+                        })                
                     })
                     .catch(error => {
                         console.log(error.message);
@@ -115,13 +124,7 @@ const SignUp = () => {
                     </button>
 
                     <p className="text-center text-[#D1A054]">Already registered? <Link to="/login"><span className="text-[#135D66] underline">Go to log in</span></Link> </p>
-                    <div className="mt-6">
-                        <p className="text-center mb-5 text-sm">or sign in with</p>
-                        <div className="flex flex-col md:flex-row  justify-center gap-7 items-center">
-                            <p className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FcGoogle className="text-[25px]" /></p>
-                            <p className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FaGithub className="text-[25px]" /></p>
-                        </div>
-                    </div>
+                  <GoogleLogin></GoogleLogin>  
                 </form>
 
             </div>

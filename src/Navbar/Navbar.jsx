@@ -49,8 +49,8 @@ const Navbar = () => {
               <Link to="/menu">Our Menu</Link>
               <Link to="/shop">Our Shop</Link>
               <Link to="/secrete">Secrete</Link>
-              <Link to="/dashbord">Dashbord</Link>
-                <Link to="dashbord/cart">
+              <Link className={!user ? "hidden" : ""}  to="/dashbord">Dashbord</Link>
+                <Link className={!user ? "hidden" : ""} to="/dashbord/cart">
                 <button className="flex">
                 <MdOutlineShoppingCart className="text-[25px]" />
                   <div className="badge badge-secondary">+{cart.length}</div>

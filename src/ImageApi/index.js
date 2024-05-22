@@ -13,5 +13,5 @@ export const imageUplode = async(image) => {
     )
     console.log(data.data.display_url)
     return data.data.display_url
-}
+}    
 
