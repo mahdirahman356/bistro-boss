@@ -1,12 +1,16 @@
 import { CgMenuRightAlt } from "react-icons/cg";
+import { FaUtensils } from "react-icons/fa6";
 import { HiOutlineHome, HiOutlineMenuAlt1 } from "react-icons/hi";
-import { LuCalendarDays, LuMailMinus } from "react-icons/lu";
+import { LuBookOpenCheck, LuCalendarDays, LuMailMinus } from "react-icons/lu";
 import { MdOutlinePayments, MdOutlineReviews, MdOutlineShoppingBag, MdOutlineShoppingCart } from "react-icons/md";
+import { PiUsersThree } from "react-icons/pi";
+import { RiMenuFold4Line } from "react-icons/ri";
 import { TbCalendarUser, TbUser } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashbord = () => {
-    let isAdmin = true
+    let [isAdmin] = useAdmin()
     return (
         <div className="flex flex-col md:flex-row bg-[#D1A054]">
             {/* side bar */}
@@ -23,10 +27,10 @@ const Dashbord = () => {
                         <ul className="menu p-7 w-70 md:w-60 h-screen bg-[#D1A054] text-base-content gap-4">
                             {isAdmin ? <>
                                     <NavLink to='admin-home' className="flex items-center gap-2"><HiOutlineHome className="text-[23px]" />Admin Home</NavLink>
-                                    <NavLink className="flex items-center gap-2"><LuCalendarDays className="text-xl" />Add Items</NavLink>
-                                    <NavLink to='' className="flex items-center gap-2"><MdOutlineShoppingCart className="text-[23px]" />Manage Items</NavLink>
-                                    <NavLink className="flex items-center gap-2"><MdOutlinePayments className="text-[23px]" />Manage Bookings</NavLink>
-                                    <NavLink to='all-users' className="flex items-center gap-2"><MdOutlineReviews className="text-[23px]" />All Users</NavLink>
+                                    <NavLink to="add-items" className="flex items-center gap-2"><FaUtensils className="text-xl" />Add Items</NavLink>
+                                    <NavLink to='' className="flex items-center gap-2"><RiMenuFold4Line className="text-[23px]" />Manage Items</NavLink>
+                                    <NavLink className="flex items-center gap-2"><LuBookOpenCheck className="text-[23px]" />Manage Bookings</NavLink>
+                                    <NavLink to='all-users' className="flex items-center gap-2"><PiUsersThree className="text-[24px]" />All Users</NavLink>
                                 </>
                                     : <>
                                         <NavLink to='userHome' className="flex items-center gap-2"><HiOutlineHome className="text-[23px]" />User Home</NavLink>

@@ -63,27 +63,6 @@ const Login = () => {
             })
     }
 
-    // let  handleGoogleLogIn = () => {
-    //     googleLogIn()
-    //     .then((result) => {
-    //         console.log(result.user)
-    //         Swal.fire({
-    //             title: 'Success',
-    //             text: 'User Added Successfully',
-    //             icon: 'success',
-    //             confirmButtonText: 'Cool'
-    //           })
-    //           navigate(from, { replace: true });
-
-
-    //     })
-    //     .catch((error) => {
-    //         console.log(error)
-    //     });
-    // }
-
-
-
     return (
         <div className=" lg:p-32" style={{ backgroundImage: `url(${img})` }}>
             <div className="w-[95%] mx-auto shadow-2xl flex flex-col lg:flex-row justify-between items-center md:p-10" style={{ backgroundImage: `url(${img})` }}>

@@ -15,6 +15,8 @@ import UserHome from "../Dashbord/UserHome";
 import UserProfile from "../Dashbord/UserProfile";
 import AllUsers from "../Dashbord/AllUsers";
 import AdminHome from "../Dashbord/AdminHome";
+import AddItems from "../Dashbord/AddItems";
+import AdminRoute from "../AdminRoute/AdminRoute";
    export const router = createBrowserRouter([
     {
       path: "/",
@@ -60,15 +62,19 @@ import AdminHome from "../Dashbord/AdminHome";
         },
         {
           path:"user-profilr",
-          element:<PrivetRoute><UserProfile></UserProfile></PrivetRoute>
+          element:<UserProfile></UserProfile>
         },
         {
           path:"admin-home",  
-          element:<PrivetRoute><AdminHome></AdminHome></PrivetRoute>
+          element:<AdminRoute><AdminHome></AdminHome></AdminRoute>
         },
         {
           path:"all-users",  
-          element:<PrivetRoute><AllUsers></AllUsers></PrivetRoute>
+          element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+        },
+        {
+          path:"add-items",
+          element:<AdminRoute><AddItems></AddItems></AdminRoute>
         }
       ]
     }

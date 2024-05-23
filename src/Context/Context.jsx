@@ -3,11 +3,12 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types'; 
 import auth from "../firebase/firebase";
 import { GoogleAuthProvider } from "firebase/auth";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
 
 export const AuthContext = createContext()
 const provider = new GoogleAuthProvider();
 const Context = ({ children }) => {
-
+    let axiosCommon = useAxiosCommon() 
     let [user, setUser] = useState(null)
     let [loading, setLoading] = useState(true)
     let [menuList, SetMenuList] = useState("")
@@ -52,12 +53,24 @@ const Context = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setLoading(false)
             console.log("onAuthStateChanged", currentUser)
+            if(currentUser){
+               const userInfo = {email: currentUser.email }
+               axiosCommon.post('/jwt', userInfo)
+               .then(res => {
+                  if(res.data){
+                    localStorage.setItem("access-token", res.data.token)
+                  }
+               })
+            }
+            else{
+                localStorage.removeItem("access-token")
+            }
             setUser(currentUser)
         })
         return () => {
             unSubscribe()
         }
-    }, [])
+    }, [axiosCommon])
 
     const authInfo =
     {
