@@ -16,7 +16,6 @@ const AllUsers = () => {
     })
 
     let handleDelete = (id) => {
-        console.log(id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -34,7 +33,7 @@ const AllUsers = () => {
                             refetch()
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "User has been deleted.",
                                 icon: "success"
                             });
                         }
@@ -68,7 +67,7 @@ const AllUsers = () => {
             >
             </SectionTitle>
             <div className="my-5">
-                <p className="md:text-2xl font-bold">Total items: {users.length}</p>
+                <p className="md:text-2xl font-bold">Total Users: {users.length}</p>
             </div>
 
             <div className="overflow-x-auto rounded-t-2xl">

@@ -1,20 +1,23 @@
-import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
-import { imageUplode } from "../ImageApi";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
+import { imageUplode } from "../ImageApi";
 import Swal from "sweetalert2";
 
-const AddItems = () => {
+const UpdeteItems = () => {
+    let menu = useLoaderData()
+    let {_id, name, price, recipe} = menu
     let axiosSecure = useAxiosSecure()
     const {
         register,
         formState: { errors },
-        handleSubmit,
+        handleSubmit, 
     } = useForm()
 
-    const onSubmit = async(data) => {
-        try{
+    const onSubmit = async (data) => {
+        try {
             const url = await imageUplode(data.image[0])
             let menuItem = {
                 name: data.name,
@@ -22,43 +25,44 @@ const AddItems = () => {
                 image: url,
                 category: data.category,
                 price: data.price,
-             }
+            }
             console.log(menuItem)
-            axiosSecure.post("/menu", menuItem)
+            axiosSecure.patch(`/menu/${_id}`, menuItem)
             .then(res => {
                 console.log(res.data)
-                if(res.data.acknowledged === true){
+                if(res.data.modifiedCount > 0){
                     Swal.fire({
                         title: "Success",
-                        text: `${data.name} added to your menu`,
+                        text: `${data.name} Updated Succesfully`,
                         icon: "success"
                       });
-                      refetch()  
                 }
             })
-            
+
         }
-        catch (err){
+        catch (err) {
             console.log(err)
         }
 
     }
 
     return (
-        <div>
+        <div className="w-[95%] mx-auto">
             <SectionTitle
-                subHeader="---What's new?---"
-                header="ADD AN ITEM"
+                subHeader="---Hurry Up!---"
+                header="UPDATE ITEMS"
             >
             </SectionTitle>
             <div className="w-[90%] mx-auto my-5 md:mb-16 bg-[#F4F3F0] p-5 md:p-20">
                 <form onSubmit={handleSubmit(onSubmit)} >
                     {/* from-row-1 */}
+                    {/* item name */}
                     <div className="w-full">
                         <p className="font-semibold my-2 mt-5">Recipe name*</p>
                         <input type="text"
                             placeholder="Recipe name"
                             name="name"
+                            defaultValue={name}
                             className="input  w-full"
                             {...register("name", { required: true })} />
                         {errors.name && <span className="text-sm text-red-500">This field is required</span>}
@@ -90,6 +94,7 @@ const AddItems = () => {
                             <input type="text"
                                 placeholder="Price"
                                 name="price"
+                                defaultValue={price}
                                 className="input  w-full"
                                 {...register("price", { required: true })} />
                             {errors.price && <span className="text-sm text-red-500">This field is required</span>}
@@ -105,6 +110,7 @@ const AddItems = () => {
                             className="textarea h-24"
                             placeholder="Recipe Details"
                             name="recipe"
+                            defaultValue={recipe}
                             {...register("recipe", { required: true })}
                         ></textarea>
                         {errors.recipe && <span className="text-sm text-red-500">This field is required</span>}
@@ -125,8 +131,8 @@ const AddItems = () => {
                     </button>
                 </form>
             </div >
-        </div >
+        </div>
     );
 };
 
-export default AddItems;
+export default UpdeteItems;

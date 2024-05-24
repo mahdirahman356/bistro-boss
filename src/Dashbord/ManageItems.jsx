@@ -1,55 +1,52 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
-import useCart from "../Hooks/useCart";
+import useMenu from "../Hooks/useMenu";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
-const Cart = () => {
-    let [cart, refetch] = useCart()
-    let totalPrice = cart.reduce((total, item) => total + item.price, 0)
+const ManageItems = () => {
+    let [menu, refetch] = useMenu()
     let axiosSecure = useAxiosSecure()
-    let handleDelete = (id) => {
-       console.log(id)
-       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then((result) => {
-        if (result.isConfirmed) {
-        axiosSecure.delete(`/carts/${id}`)
-        .then(res => {
-            console.log(res.data)
-            if(res.data.deletedCount > 0){
-                refetch()
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                  });
+    let handleDelete = (id, name) => {
+        console.log(id)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/menu/${id}`)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: `${name} has been deleted.`,
+                                icon: "success"
+                            });
+                        }
+
+                    })
+
             }
-
-        })
-
-        }
-      });
+        });
     }
     return (
         <div className="w-[95%] mx-auto">
-            <div>
-                <SectionTitle
-                    subHeader="---My Cart---"
-                    header="WANNA ADD MORE?"
-                >
-                </SectionTitle>
-            </div>
-            <div className="flex justify-around gap-3 items-center my-5">
-                <p className="md:text-2xl font-bold">Total items: {cart.length}</p>
-                <p className="md:text-2xl font-bold">Total Price: {totalPrice}$</p>
-                <button className="btn btn-sm bg-[#D1A054] text-white">Pay</button>
+            <SectionTitle
+                subHeader="---Hurry Up!---"
+                header="MANAGE ALL ITEMS"
+            >
+            </SectionTitle>
+            <div className="my-5">
+                <p className="md:text-2xl font-bold">Total Items: {menu.length}</p>
             </div>
             <div className="overflow-x-auto rounded-t-2xl">
                 <table className="table">
@@ -61,12 +58,13 @@ const Cart = () => {
                             <th>Item Name</th>
                             <th>Price</th>
                             <th>Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            cart.map((item, index) => <tr key={index}>
+                            menu.map((item, index) => <tr key={index}>
                                 <td>
                                    <p className="font-semibold"> {index + 1} </p>
                                 </td>
@@ -86,17 +84,25 @@ const Cart = () => {
                                     <div className="font-semibold">{item.price}</div>
                                 </td>
                                 <th>
-                                    <div onClick={() => handleDelete (item._id)}>
+                                    <Link to={`/dashbord/update-item/${item._id}`}>
+                                    <button className="btn btn-ghost">
+                                    <HiOutlinePencilSquare className="text-[23px] text-[#D1A054]" />
+                                    </button>
+                                    </Link>
+                                </th>
+                                <th>
+                                    <button onClick={() => handleDelete(item._id, item.name)} className="btn btn-ghost">
                                     <RiDeleteBin6Line className="text-xl text-red-500" />
-                                    </div>
+                                    </button>
                                 </th>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
+
         </div>
     );
 };
 
-export default Cart;
+export default ManageItems;
