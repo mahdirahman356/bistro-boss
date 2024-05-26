@@ -4,10 +4,12 @@ import { AuthContext } from "../Context/Context";
 import userImg from "../assets/icon/user.avif"
 import { MdOutlineShoppingCart } from "react-icons/md";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 const Navbar = () => {
 
   let { user, userLogOut } = useContext(AuthContext)
   let [cart] = useCart()
+  let [isAdmin] = useAdmin()
   let handleLogOut = () => {
     userLogOut()
       .then(() => {
@@ -49,13 +51,19 @@ const Navbar = () => {
               <Link to="/menu">Our Menu</Link>
               <Link to="/shop">Our Shop</Link>
               <Link to="/secrete">Secrete</Link>
-              <Link className={!user ? "hidden" : ""}  to="/dashbord">Dashbord</Link>
-                <Link className={!user ? "hidden" : ""} to="/dashbord/cart">
-                <button className="flex">
+              {
+                isAdmin ? <Link className={!user ? "hidden" : ""}  to="/dashbord/admin-home">Dashbord</Link>
+                : <Link className={!user ? "hidden" : ""}  to="/dashbord/userHome">Dashbord</Link>
+              }
+              {
+                !isAdmin &&  <Link className={!user ? "hidden" : ""} to="/dashbord/cart">
+                   <button className="flex">
                 <MdOutlineShoppingCart className="text-[25px]" />
                   <div className="badge badge-secondary">+{cart.length}</div>
                 </button>
                 </Link>
+
+              }
               <Link to="/login" className={user ? "hidden" : ""}>Login</Link>
               <button className={!user ? "hidden" : ""} onClick={handleLogOut}>Log Out</button>
             </ul>

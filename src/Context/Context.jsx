@@ -51,14 +51,16 @@ const Context = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setLoading(false)
+            // setLoading(false)
             console.log("onAuthStateChanged", currentUser)
             if(currentUser){
-               const userInfo = {email: currentUser.email }
+               const userInfo = {email: currentUser.email}
+               console.log(userInfo)
                axiosCommon.post('/jwt', userInfo)
                .then(res => {
                   if(res.data){
                     localStorage.setItem("access-token", res.data.token)
+                    setLoading(false)
                   }
                })
             }
@@ -70,7 +72,7 @@ const Context = ({ children }) => {
         return () => {
             unSubscribe()
         }
-    }, [axiosCommon])
+    }, [])
 
     const authInfo =
     {

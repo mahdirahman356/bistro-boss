@@ -19,6 +19,7 @@ import AddItems from "../Dashbord/AddItems";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import ManageItems from "../Dashbord/ManageItems";
 import UpdeteItems from "../Dashbord/UpdeteItems";
+import Payments from "../Dashbord/Payments";
    export const router = createBrowserRouter([
     {
       path: "/",
@@ -54,6 +55,7 @@ import UpdeteItems from "../Dashbord/UpdeteItems";
       path: '/dashbord',
       element:<Dashbord></Dashbord>, 
       children: [
+        // user-links
         {
           path:'userHome',
           element:<UserHome></UserHome>
@@ -66,6 +68,11 @@ import UpdeteItems from "../Dashbord/UpdeteItems";
           path:"user-profilr",
           element:<UserProfile></UserProfile>
         },
+        {
+          path:'payments',
+          element:<Payments></Payments>
+        },
+        // admin-links
         {
           path:"admin-home",  
           element:<AdminRoute><AdminHome></AdminHome></AdminRoute>

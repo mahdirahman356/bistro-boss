@@ -11,6 +11,7 @@ import useAdmin from "../Hooks/useAdmin";
 
 const Dashbord = () => {
     let [isAdmin] = useAdmin()
+    console.log(isAdmin)
     return (
         <div className="flex flex-col lg:flex-row">
             {/* side bar */}

@@ -116,7 +116,7 @@ const Login = () => {
                     </div>
 
                     <button
-                        disabled={disabled} 
+                        // disabled={disabled} 
                         className="btn text-white bg-[#D1A054] w-full my-6"
                         type="submit">
                         {loading ?

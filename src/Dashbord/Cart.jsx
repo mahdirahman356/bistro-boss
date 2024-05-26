@@ -3,6 +3,7 @@ import useCart from "../Hooks/useCart";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     let [cart, refetch] = useCart()
@@ -48,8 +49,16 @@ const Cart = () => {
             </div>
             <div className="flex justify-around gap-3 items-center my-5">
                 <p className="md:text-2xl font-bold">Total items: {cart.length}</p>
-                <p className="md:text-2xl font-bold">Total Price: {totalPrice}$</p>
-                <button className="btn btn-sm bg-[#D1A054] text-white">Pay</button>
+                <p className="md:text-2xl font-bold">Total Price: {totalPrice} </p>
+                {
+                    cart.length > 0 ? <Link to='/dashbord/payments'>
+                    <button className="btn btn-sm bg-[#D1A054] text-white">Pay</button>
+                    </Link> 
+                    : 
+                    <button disabled className="btn btn-sm bg-[#D1A054] text-white">Pay</button>
+
+                }
+                
             </div>
             <div className="overflow-x-auto rounded-t-2xl">
                 <table className="table">

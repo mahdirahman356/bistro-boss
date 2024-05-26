@@ -5,15 +5,18 @@ import { useQuery } from "@tanstack/react-query";
 
 const useAdmin = () => {
     let axiosSecure = useAxiosSecure()
-    let {user} = useContext(AuthContext)
+    let { user } = useContext(AuthContext)
     const { data: isAdmin = [], isLoading: isAdminLoading } = useQuery({
         queryKey: ['isAdmin', user?.email],
-        queryFn: async() => {
-            const res = await axiosSecure.get(`/users/admin/${user.email}`)
-            return res.data?.admin
-        }
-          
-      })
+        queryFn: async () => {
+            if (user?.email) {
+                const res = await axiosSecure.get(`/users/admin/${user?.email}`)
+                return res.data?.admin
+            }
+        }, 
+        enabled: !!localStorage.getItem('access-token')
+
+    })
     return [isAdmin, isAdminLoading]
 };
 
