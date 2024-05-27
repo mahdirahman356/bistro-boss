@@ -37,7 +37,7 @@ const Dashbord = () => {
                                         <NavLink to='userHome' className="flex items-center gap-2"><HiOutlineHome className="text-[23px]" />User Home</NavLink>
                                         <NavLink className="flex items-center gap-2"><LuCalendarDays className="text-xl" />Reservation</NavLink>
                                         <NavLink to='cart' className="flex items-center gap-2"><MdOutlineShoppingCart className="text-[23px]" />My Cart</NavLink>
-                                        <NavLink className="flex items-center gap-2"><MdOutlinePayments className="text-[23px]" />Payment History</NavLink>
+                                        <NavLink to='payment-history' className="flex items-center gap-2"><MdOutlinePayments className="text-[23px]" />Payment History</NavLink>
                                         <NavLink className="flex items-center gap-2"><MdOutlineReviews className="text-[23px]" />Add Review</NavLink>
                                         <NavLink className="flex items-center gap-2"><TbCalendarUser className="text-[23px]" />My Bookings</NavLink>
                                     </>}

@@ -55,7 +55,6 @@ const Context = ({ children }) => {
             console.log("onAuthStateChanged", currentUser)
             if(currentUser){
                const userInfo = {email: currentUser.email}
-               console.log(userInfo)
                axiosCommon.post('/jwt', userInfo)
                .then(res => {
                   if(res.data){
