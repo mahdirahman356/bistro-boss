@@ -6,7 +6,7 @@ import { PiChefHatLight, PiTruck, PiUsersThree } from "react-icons/pi";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
-import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer } from 'recharts';
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -32,7 +32,7 @@ const AdminHome = () => {
         }
     })
 
-    // quantity chart
+    // chart for quantity
     const getPath = (x, y, width, height) => {
         return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
         ${x + width / 2}, ${y}
@@ -46,8 +46,9 @@ const AdminHome = () => {
         return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
     };
 
+    // chart for
     const RADIAN = Math.PI / 180;
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -111,11 +112,10 @@ const AdminHome = () => {
                 </div>
             </div>
 
-            <div className="mx-auto my-20">
-                <div className="">
+            <div className="flex flex-col lg:flex-row my-20">
+                <div className="w-full lg:w-1/2">
+                    <ResponsiveContainer width="100%" height={400}>
                     <BarChart
-                        width={500}
-                        height={300}
                         data={chartData}
                         margin={{
                             top: 20,
@@ -133,10 +133,11 @@ const AdminHome = () => {
                             ))}
                         </Bar>
                     </BarChart>
+                    </ResponsiveContainer>
                 </div>
-                <div>
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart width={400} height={400}>
+                <div className="lg:w-1/2">
+                    <ResponsiveContainer width="95%" height={400}> 
+                        <PieChart>
                             <Pie
                                 data={pieChartData}
                                 cx="50%"
