@@ -18,7 +18,7 @@ const Dashbord = () => {
             <div className="lg:w-60 mb-12 md:mb-0">
                 <div className="drawer md:drawer lg:drawer-open  lg:fixed lg:h-screen text-base-content gap-4">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                    <div className="drawer-content w-full flex items-center justify-between p-3 text-white">
+                    <div className="drawer-content w-full flex items-center justify-between p-3 text-white bg-[#D1A054] md:bg-white">
                         <p className="text-2xl font-bold lg:hidden">Bistro Boss</p>
                         <label htmlFor="my-drawer-2" className="drawer-button lg:hidden"><CgMenuRightAlt className="text-[23px]" /></label>
 
@@ -52,7 +52,7 @@ const Dashbord = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex-1 bg-white sticky top-0 lg:z-20">
+            <div className="flex-1 bg-white sticky top-0 -z-10 lg:z-20">
                 <Outlet></Outlet>
             </div>
         </div>

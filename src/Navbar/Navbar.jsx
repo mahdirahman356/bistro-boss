@@ -50,11 +50,12 @@ const Navbar = () => {
               <Link to="/">Home</Link>
               <Link to="/menu">Our Menu</Link>
               <Link to="/shop">Our Shop</Link>
-              <Link to="/secrete">Secrete</Link>
-              {
-                isAdmin ? <Link className={!user ? "hidden" : ""}  to="/dashbord/admin-home">Dashbord</Link>
-                : <Link className={!user ? "hidden" : ""}  to="/dashbord/userHome">Dashbord</Link>
-              }
+               {
+                user && isAdmin && <Link to="/dashbord/admin-home">Dashbord</Link>
+               }
+               {
+                user && !isAdmin && <Link to="/dashbord/userHome">Dashbord</Link>
+               }
               {
                 !isAdmin &&  <Link className={!user ? "hidden" : ""} to="/dashbord/cart">
                    <button className="flex">
