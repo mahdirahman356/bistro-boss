@@ -16,7 +16,11 @@ const UserProfile = () => {
         console.log(name)
         console.log(image)
             try{
-                const url =  await imageUplode(image)
+                let url = user.photoURL 
+                if(image){
+                    const uploadResult = await imageUplode(image);
+                    url = uploadResult
+                }
                await userUpdate(name, url)  
             }
             catch (err){
@@ -52,7 +56,7 @@ const UserProfile = () => {
                                     defaultValue={user.displayName}
                                     className="block w-full py-3 text-gray-700 bg-white rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 border-gray-200 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                     placeholder="Username"
-                                    required/>
+                                    />
                             </div>
                             {/* Profile Photo */}
                             <p className="mt-3 text-gray-500 mb-1 text-sm ml-2">Profile Photo</p>
@@ -60,9 +64,9 @@ const UserProfile = () => {
                                 <input
                                     type="file"
                                     name="image"
-                                    className="rounded-lg bg-[#D1A054] text-white opacity-70"
+                                    className="rounded-lg bg-[#D1A054] text-white"
                                     accept="image/*"
-                                    required/>
+                                    />
                             </label>
                             <input className="btn bg-[#D1A054] w-full text-white mt-4" type="submit" value="Save" />
                         </form>

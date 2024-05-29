@@ -1,7 +1,7 @@
 import axios from "axios";
 
  let axiosCommon = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://bistro-boss-restaurant-server-taupe.vercel.app'
 })
 const useAxiosCommon = () => {
     return axiosCommon

@@ -59,23 +59,23 @@ import PaymentHistory from "../Dashbord/PaymentHistory";
         // user-links
         {
           path:'userHome',
-          element:<UserHome></UserHome>
+          element:<PrivetRoute><UserHome></UserHome></PrivetRoute>
         },
         {
           path:"cart",  
-          element: <Cart></Cart>
+          element: <PrivetRoute><Cart></Cart></PrivetRoute>
         },
         {
           path:"user-profilr",
-          element:<UserProfile></UserProfile>
+          element:<PrivetRoute><UserProfile></UserProfile></PrivetRoute>
         },
         {
           path:'payments',
-          element:<Payments></Payments>
+          element:<PrivetRoute><Payments></Payments></PrivetRoute>
         },
         {
           path:'payment-history',
-          element: <PaymentHistory></PaymentHistory>
+          element: <PrivetRoute><PaymentHistory></PaymentHistory></PrivetRoute>
         },  
         // admin-links
         {
@@ -96,7 +96,7 @@ import PaymentHistory from "../Dashbord/PaymentHistory";
         },
         {
           path:"update-item/:id",
-          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`),
+          loader: ({params}) => fetch(`https://bistro-boss-restaurant-server-taupe.vercel.app/menu/${params.id}`),
           element:<AdminRoute><UpdeteItems></UpdeteItems></AdminRoute>
         },
       ]
