@@ -5,26 +5,26 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { imageUplode } from "../ImageApi";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const UpdeteItems = () => {
     let menu = useLoaderData()
+    let [loading, setLoading] = useState(false);
     let {_id, name, price, recipe, category, image} = menu
-    console.log(image)
     let axiosSecure = useAxiosSecure()
     const {
         register,
-        // formState: { errors },
         handleSubmit, 
     } = useForm()
 
     const onSubmit = async (data) => {
+        setLoading(true);
         try {
             let url = image 
                 if(data.image[0]){
                     const uploadResult = await imageUplode(data.image[0])
                     url = uploadResult
                 }
-            // const url = await imageUplode(data.image[0])
             let menuItem = {
                 name: data.name,
                 recipe: data.recipe,
@@ -44,10 +44,18 @@ const UpdeteItems = () => {
                       });
                 }
             })
+            .catch(err => {
+                console.error(err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
 
         }
         catch (err) {
             console.log(err)
+            setLoading(false);
+
         }
 
     }
@@ -123,7 +131,10 @@ const UpdeteItems = () => {
                     />
 
                     <button className="btn flex text-white bg-[#D1A054] rounded-none mt-6" type="submit" >
-                        Add Item
+                    {loading ?
+                            <span className="loading loading-spinner text-white"></span>
+                            : "Add Items"
+                        }
                         <FaUtensils className="text-xl" />
                     </button>
                 </form>

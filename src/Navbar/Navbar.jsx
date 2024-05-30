@@ -5,6 +5,7 @@ import userImg from "../assets/icon/user.avif"
 import { MdOutlineShoppingCart } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 import useAdmin from "../Hooks/useAdmin";
+import { GiHamburger } from "react-icons/gi";
 const Navbar = () => {
 
   let { user, userLogOut } = useContext(AuthContext)
@@ -42,7 +43,7 @@ const Navbar = () => {
               <li><a>Item 3</a></li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">BISTRO BOSS</a>
+          <a className="btn btn-ghost text-xl"><GiHamburger className="text-2xl text-white" /> BISTRO BOSS</a>
         </div>
         <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">

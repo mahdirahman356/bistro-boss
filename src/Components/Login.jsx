@@ -116,7 +116,7 @@ const Login = () => {
                     </div>
 
                     <button
-                        // disabled={disabled} 
+                        disabled={disabled} 
                         className="btn text-white bg-[#D1A054] w-full my-6"
                         type="submit">
                         {loading ?
@@ -124,13 +124,6 @@ const Login = () => {
                             : "Continue"}
                     </button>
                     <p className="text-center text-[#D1A054]">Dont have an account? <Link to="/signup"><span className="text-[#135D66] underline">Create an account</span></Link> </p>
-                    {/* <div className="mt-6">
-                        <p className="text-center mb-5 text-sm">or sign in with</p>
-                        <div className="flex flex-col md:flex-row  justify-center gap-7 items-center">
-                            <p onClick={handleGoogleLogIn} className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FcGoogle className="text-[25px]" /></p>
-                            <p className="p-3 border btn btn-ghost border-gray-400 rounded-full"><FaGithub className="text-[25px]" /></p>
-                        </div>
-                    </div> */}
                     <GoogleLogin></GoogleLogin>
                 </form>
 

@@ -9,6 +9,7 @@ const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState('')
+    let [loading, setLoading] = useState(false);
     const [clientSecret, setClientSecret] = useState("");
     const [transectionId, setTransectionId] = useState("");
     const axiosSecure = useAxiosSecure()
@@ -29,12 +30,15 @@ const CheckoutForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         if (!stripe || !elements) {
+            setLoading(true);
             return;
         }
         const card = elements.getElement(CardElement);
 
         if (card == null) {
+            setLoading(false);
             return;
         }
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -45,6 +49,7 @@ const CheckoutForm = () => {
         if (error) {
             console.log('[error]', error);
             setError(error.message)
+            setLoading(false);
         } else {
             console.log('[PaymentMethod]', paymentMethod);
             setError('')
@@ -63,6 +68,7 @@ const CheckoutForm = () => {
           );
           if(confirmError){
             console.log(confirmError)
+            setLoading(false);
           }
           else{
             console.log('payments intent', paymentIntent)
@@ -88,6 +94,8 @@ const CheckoutForm = () => {
                             confirmButtonText: 'Cool'
                         })
                     }
+                    setLoading(false);
+
             }
           }
     };
@@ -115,7 +123,10 @@ const CheckoutForm = () => {
                 />
                 <div className="flex flex-col items-center justify-center mt-20">
                     <button disabled={!stripe || !clientSecret } className="btn bg-[#D1A054] text-white w-[300px]" type="submit">
-                        Pay
+                    {loading ?
+                            <span className="loading loading-spinner text-white"></span>
+                            : "Pay"
+                        }
                     </button>
                     <p className="text-red-500 text-sm mt-2">{error}</p>
                     {transectionId && <p className="text-green-500 text-sm mt-2">Your Transection Id: {transectionId}</p>}

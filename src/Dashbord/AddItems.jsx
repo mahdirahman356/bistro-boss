@@ -4,9 +4,12 @@ import { FaUtensils } from "react-icons/fa";
 import { imageUplode } from "../ImageApi";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const AddItems = () => {
     let axiosSecure = useAxiosSecure()
+    let [loading, setLoading] = useState(false);
+
     const {
         register,
         formState: { errors },
@@ -14,6 +17,7 @@ const AddItems = () => {
     } = useForm()
 
     const onSubmit = async(data) => {
+        setLoading(true);
         try{
             const url = await imageUplode(data.image[0])
             let menuItem = {
@@ -36,10 +40,17 @@ const AddItems = () => {
                       refetch()  
                 }
             })
+            .catch(err => {
+                console.error(err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
             
         }
         catch (err){
             console.log(err)
+            setLoading(false);
         }
 
     }
@@ -120,7 +131,10 @@ const AddItems = () => {
 
 
                     <button className="btn flex text-white bg-[#D1A054] rounded-none mt-6" type="submit" >
-                        Add Item
+                    {loading ?
+                            <span className="loading loading-spinner text-white"></span>
+                            : "Add Items"
+                        }
                         <FaUtensils className="text-xl" />
                     </button>
                 </form>
