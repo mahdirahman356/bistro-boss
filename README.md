@@ -24,3 +24,11 @@ This project is a comprehensive food ordering platform that allows users to orde
 - **Database:** MongoDB 
 - **Authentication:** Firebase Authentication
 
+ ## Steps to Clone and Run Locally
+
+- **Clone the Repository:** git clone [repository-url]
+- **Navigate to the Project Directory:**  cd [project-directory]
+- **Install Dependencies:** npm install
+- **Set Up Environment Variables:** Create a .env file in the root directory for the backend environment variables (e.g., MongoDB URI). and Create a .env.local file in the root directory for the frontend environment variables (e.g., Firebase keys).
+
+
