@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const UpdeteItems = () => {
     let menu = useLoaderData()
+    const navigate = useNavigate()
     let [loading, setLoading] = useState(false);
     let {_id, name, price, recipe, category, image} = menu
     let axiosSecure = useAxiosSecure()
@@ -42,6 +43,7 @@ const UpdeteItems = () => {
                         text: `${data.name} Updated Succesfully`,
                         icon: "success"
                       });
+                      navigate('/dashbord/manage-items')
                 }
             })
             .catch(err => {

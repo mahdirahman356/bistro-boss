@@ -80,7 +80,7 @@ const AdminHome = () => {
                     <div className="stat flex items-center gap-5">
                         <div>
                             <div className="stat-title">Revenue</div>
-                            <div className="stat-value">${stats.revenue}</div>
+                            <div className="stat-value">${parseFloat(stats.revenue).toFixed(2)}</div>
                         </div>
                         <MdOutlinePayments className="text-6xl text-[#D1A054]" />
                     </div>

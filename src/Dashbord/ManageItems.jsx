@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 
 const ManageItems = () => {
     let [menu, refetch] = useMenu()
+    
+    const AllManu = menu.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
     let axiosSecure = useAxiosSecure()
     let handleDelete = (id, name) => {
         console.log(id)
@@ -64,7 +67,7 @@ const ManageItems = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            menu.map((item, index) => <tr key={index}>
+                            AllManu.map((item, index) => <tr key={index} className="hover whitespace-nowrap">
                                 <td>
                                    <p className="font-semibold"> {index + 1} </p>
                                 </td>
@@ -81,7 +84,7 @@ const ManageItems = () => {
                                     <div className="font-semibold">{item.name}</div>
                                 </td>
                                 <td>
-                                    <div className="font-semibold">{item.price}</div>
+                                    <div className="font-semibold">{item.price}$</div>
                                 </td>
                                 <th>
                                     <Link to={`/dashbord/update-item/${item._id}`}>

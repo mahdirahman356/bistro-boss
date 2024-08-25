@@ -47,9 +47,18 @@ const Cart = () => {
                 >
                 </SectionTitle>
             </div>
-            <div className="flex justify-around gap-3 items-center my-5">
+            {cart.length === 0 ?
+            <div className="flex flex-col items-center">
+                <p className="text-gray-400 text-2xl font-semibold text-center my-4">Your Cart is Empty!</p> 
+                <Link to="/shop">                
+                <button className="uppercase btn btn-outline text-black border-x-0 border-t-0 border-black border-b-2 mt-6 rounded-lg">Start Ordering</button>
+                </Link>
+            </div>
+            :
+            <div>
+                <div className="flex justify-around gap-3 items-center my-5">
                 <p className="md:text-2xl font-bold">Total items: {cart.length}</p>
-                <p className="md:text-2xl font-bold">Total Price: {totalPrice} </p>
+                <p className="md:text-2xl font-bold">Total Price: {parseFloat(totalPrice).toFixed(2)}$ </p>
                 {
                     cart.length > 0 ? <Link to='/dashbord/payments'>
                     <button className="btn btn-sm bg-[#D1A054] text-white">Pay</button>
@@ -61,7 +70,7 @@ const Cart = () => {
                 
             </div>
             <div className="overflow-x-auto rounded-t-2xl">
-                <table className="table">
+                <table className="table mb-12">
                     {/* head */}
                     <thead className="bg-[#D1A054] text-white rounded-t-3xl">
                         <tr>
@@ -75,7 +84,7 @@ const Cart = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            cart.map((item, index) => <tr key={index}>
+                            cart.map((item, index) => <tr key={index} className="hover whitespace-nowrap text-sm">
                                 <td>
                                    <p className="font-semibold"> {index + 1} </p>
                                 </td>
@@ -92,7 +101,7 @@ const Cart = () => {
                                     <div className="font-semibold">{item.name}</div>
                                 </td>
                                 <td>
-                                    <div className="font-semibold">{item.price}</div>
+                                    <div className="font-semibold">{item.price}$</div>
                                 </td>
                                 <th>
                                     <div onClick={() => handleDelete (item._id)}>
@@ -104,6 +113,7 @@ const Cart = () => {
                     </tbody>
                 </table>
             </div>
+                </div>}
         </div>
     );
 };

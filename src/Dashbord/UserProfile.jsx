@@ -31,7 +31,7 @@ const UserProfile = () => {
         <div className="flex justify-center items-center min-h-screen">
             <div className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                 <div className="flex justify-center -mt-16">
-                    <img className="object-cover w-20 h-20 border-2 border-[#D1A054] rounded-full dark:border-blue-400" src={user.photoURL ? user.photoURL : userImg} alt="" />
+                    <img className="object-cover w-24 h-24 border-2 border-[#D1A054] rounded-full dark:border-blue-400" src={user.photoURL ? user.photoURL : userImg} alt="" />
                 </div>
                 <h2 className="mt-2 text-xl font-semibold text-gray-800 dark:text-white md:mt-3 text-center">{user.displayName}</h2>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">Easily update your username and profile picture URL. This feature allows you to personalize your profile and keep your information current with just a few clicks.</p>
@@ -78,4 +78,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-

@@ -1,11 +1,10 @@
 import { CgMenuRightAlt } from "react-icons/cg";
 import { FaUtensils } from "react-icons/fa6";
 import { HiOutlineHome, HiOutlineMenuAlt1 } from "react-icons/hi";
-import { LuBookOpenCheck, LuCalendarDays, LuMailMinus } from "react-icons/lu";
-import { MdOutlinePayments, MdOutlineReviews, MdOutlineShoppingBag, MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlinePayments, MdOutlineShoppingBag, MdOutlineShoppingCart } from "react-icons/md";
 import { PiUsersThree } from "react-icons/pi";
 import { RiMenuFold4Line } from "react-icons/ri";
-import { TbCalendarUser, TbUser } from "react-icons/tb";
+import { TbUser } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 
@@ -30,22 +29,17 @@ const Dashbord = () => {
                                 <NavLink to='admin-home' className="flex items-center gap-2"><HiOutlineHome className="text-[23px]" />Admin Home</NavLink>
                                 <NavLink to="add-items" className="flex items-center gap-2"><FaUtensils className="text-xl" />Add Items</NavLink>
                                 <NavLink to='manage-items' className="flex items-center gap-2"><RiMenuFold4Line className="text-[23px]" />Manage Items</NavLink>
-                                <NavLink className="flex items-center gap-2"><LuBookOpenCheck className="text-[23px]" />Manage Bookings</NavLink>
                                 <NavLink to='all-users' className="flex items-center gap-2"><PiUsersThree className="text-[24px]" />All Users</NavLink>
                             </>
                                 : <>
                                     <NavLink to='userHome' className="flex items-center gap-2"><HiOutlineHome className="text-[23px]" />User Home</NavLink>
-                                    <NavLink className="flex items-center gap-2"><LuCalendarDays className="text-xl" />Reservation</NavLink>
                                     <NavLink to='cart' className="flex items-center gap-2"><MdOutlineShoppingCart className="text-[23px]" />My Cart</NavLink>
                                     <NavLink to='payment-history' className="flex items-center gap-2"><MdOutlinePayments className="text-[23px]" />Payment History</NavLink>
-                                    <NavLink className="flex items-center gap-2"><MdOutlineReviews className="text-[23px]" />Add Review</NavLink>
-                                    <NavLink className="flex items-center gap-2"><TbCalendarUser className="text-[23px]" />My Bookings</NavLink>
                                 </>}
 
                             <NavLink to='/' className="flex items-center gap-2 border-t-[1px] border-white mt-4 pt-5"><HiOutlineHome className="text-[23px]" />Home</NavLink>
                             <NavLink to='/menu' className="flex items-center gap-2"><HiOutlineMenuAlt1 className="text-[23px]" />Menu</NavLink>
                             <NavLink to='/shop' className="flex items-center gap-2"><MdOutlineShoppingBag className="text-[23px]" />Shop</NavLink>
-                            <NavLink className="flex items-center gap-2"><LuMailMinus className="text-xl" />Contact</NavLink>
                             <NavLink to='user-profilr' className="flex items-center gap-2"><TbUser className="text-[25px]" />Profile</NavLink>
                         </ul>
 

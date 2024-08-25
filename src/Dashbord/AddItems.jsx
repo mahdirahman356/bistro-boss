@@ -5,13 +5,14 @@ import { imageUplode } from "../ImageApi";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddItems = () => {
     let axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     let [loading, setLoading] = useState(false);
-
     const {
-        register,
+        register, 
         formState: { errors },
         handleSubmit,
     } = useForm()
@@ -26,6 +27,7 @@ const AddItems = () => {
                 image: url,
                 category: data.category,
                 price: data.price,
+                date: new Date()
              }
             console.log(menuItem)
             axiosSecure.post("/menu", menuItem)
@@ -37,6 +39,7 @@ const AddItems = () => {
                         text: `${data.name} added to your menu`,
                         icon: "success"
                       });
+                      navigate("/dashbord/manage-items")
                       refetch()  
                 }
             })

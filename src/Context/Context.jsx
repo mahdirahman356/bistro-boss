@@ -51,7 +51,6 @@ const Context = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            // setLoading(false)
             console.log("onAuthStateChanged", currentUser)
             if(currentUser){
                const userInfo = {email: currentUser.email}

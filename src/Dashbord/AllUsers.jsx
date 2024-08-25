@@ -85,7 +85,7 @@ const AllUsers = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            users.map((users, index) => <tr key={index}>
+                            users.map((users, index) => <tr key={index} className="hover whitespace-nowrap">
                                 <td>
                                     <p className="font-semibold"> {index + 1} </p>
                                 </td>

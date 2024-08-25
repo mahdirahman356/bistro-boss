@@ -9,7 +9,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import GoogleLogin from "../SocialLogin/GoogleLogin";
 
 const Login = () => {
-    let { loginUser} = useContext(AuthContext)
+    let { loginUser } = useContext(AuthContext)
     let [disabled, setDisable] = useState(true)
     let [loading, setLoading] = useState(false);
     let navigate = useNavigate();
@@ -116,7 +116,7 @@ const Login = () => {
                     </div>
 
                     <button
-                        disabled={disabled} 
+                        disabled={disabled}
                         className="btn text-white bg-[#D1A054] w-full my-6"
                         type="submit">
                         {loading ?

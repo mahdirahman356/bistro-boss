@@ -123,7 +123,7 @@ const SignUp = () => {
                             : "Continue"}
                     </button>
 
-                    <p className="text-center text-[#D1A054]">Already registered? <Link to="/login"><span className="text-[#135D66] underline">Go to log in</span></Link> </p>
+                    <p className="text-center text-[#D1A054]">Already registered? <Link to="/login"><span className="text-[#135D66] underline">Please Login</span></Link> </p>
                   <GoogleLogin></GoogleLogin>  
                 </form>
 

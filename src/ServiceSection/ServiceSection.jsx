@@ -6,8 +6,8 @@ const ServiceSection = () => {
                 <div className="hero-overlay  py-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="w-[85%] mx-auto p-4 md:p-24 bg-white text-black">
-                        <h1 className="mb-5 text-5xl font-bold text-gray-700">Bistro Boss</h1>
-                        <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <h1 className="mb-5 text-2xl md:text-5xl font-bold text-gray-700">Bistro Boss</h1>
+                        <p className="mb-5 text-sm md:text-base text-gray-600">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
                 </div>
             </div>

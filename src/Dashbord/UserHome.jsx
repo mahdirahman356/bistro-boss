@@ -5,6 +5,7 @@ import { TbPencilStar, TbUser } from "react-icons/tb";
 import { MdOutlinePayments, MdOutlineShoppingCart } from "react-icons/md";
 import useCart from "../Hooks/useCart";
 import usePayment from "../Hooks/usePayment";
+import userImg from "../assets/icon/user.avif"
 
 const UserHome = () => {
     const { user } = useContext(AuthContext)
@@ -21,18 +22,18 @@ const UserHome = () => {
                 <p className="text-xl md:text-2xl font-bold">Hi, {user.displayName}</p>
             </div>
 
-            <div className="flex flex-col lg:flex-row mb-10 gap-5 items-end">
-                <div className="w-full lg:w-1/2 p-12 mt-16 glass bg-[#D1A054] rounded-lg shadow-lg dark:bg-gray-800">
-                    <div className="flex justify-center -mt-20">
-                        <img className="object-cover w-20 h-20 border-2 border-[#D1A054] rounded-full dark:border-blue-400" src={user.photoURL ? user.photoURL : userImg} alt="" />
+            <div className="flex flex-col md:flex-row my-12 glass rounded-xl bg-[#D1A054] p-6">
+            <div className="w-full ">
+                    <div className="flex justify-center ">
+                        <img className="object-cover w-28 h-28 border-2 border-[#D1A054] rounded-full dark:border-blue-400" src={user.photoURL ? user.photoURL : userImg} alt="" />
                     </div>
-                    <h2 className="mt-2 text-xl font-semibold text-white md:mt-3 text-center">{user.displayName}</h2>
+                    <h2 className="mt-2 text-xl font-semibold md:mt-3 text-center text-white mb-3">{user.displayName}</h2>
                 </div>
-                <div className="w-full lg:w-1/2">
+                <div className="w-full">
                     {/* start */}
-                    <div className="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                    <div className=" bg-white overflow-hidden rounded-lg">
 
-                        <div className="flex items-center px-6 py-3 bg-[#D1A054] glass">
+                        <div className="flex items-center px-6 py-3 bg-[#D1A054]">
                             <TbUser className="text-3xl text-white" />
                             <h1 className="mx-3 text-lg font-semibold text-white">your activities</h1>
                         </div>
