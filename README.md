@@ -24,6 +24,11 @@ This project is a comprehensive food ordering platform that allows users to orde
 - **Database:** MongoDB 
 - **Authentication:** Firebase Authentication
 
+## Admin Email And Password
+
+- **Email:** mahdi@gmail.com
+- **Password:** mahdi1234
+
  ## Steps to Clone and Run Locally
 
 - **Clone the Repository:** git clone [repository-url]
